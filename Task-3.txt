@@ -1,0 +1,76 @@
+EXPLORATORY DATA ANALYSIS:
+In Data Analysis I would be analysing the following:
+
+1. Missing values (NULL or NA values)
+Verify the relation between the Missing valued columns and dependent features by plotting graphs.
+
+2. All numerical variables
+Converting the temporal feature("trial_start_dt") to numerical field.
+Verifying for discrete and continuous features using a threshold for unique values.
+Verify the relation between the temporal, discrete, continuous against the dependent feature by plotting scatter plots and bar graphs.
+
+3. Distribution or normalizing numerical variables
+Verify the relation between the temporal, discrete, continuous against the dependent feature by plotting scatter plots and bar graphs.
+For continuous feature, plot histograms. This would help analysing if the feature is adhering to Guassian distribution.
+If it is non-guassian(skewed), then convert it to guassian distribution using transformations (eg: logarithmic transformation)
+
+4. categorical variables
+Find the number of unique values in each categorical feature and plot bar graphs
+to analyze the relation between these categorical feature and dependent feature.
+
+5. cardinality of categorical variables
+
+6. outliers
+Verifying outlier using box plots for continuous features.
+
+7. relationship between independent and dependent features ("converted_ind")
+
+
+FEATURE ENGINEERING:
+
+1. Missing Values
+For Categorical features, we can replace the missing values(NULL or NA) with a placeholder (eg: "Missing")
+For numerical features, we replace the NaN value with the median of that feature.
+While doing we can create a new feature column to specify if that field was NaN or not. Could be useful for future development.
+This would help us know that this specific feature had NaN values.
+Some similar logic can be applied to temporal feature.
+
+2. Categorical features
+Filtering can be done on these features if their count is less than 1% (example).
+We can either drop this data, as this would not be contributing to the dataset. OR,
+we can replace it with "Rare_var" placeholder.
+
+3. Filtering data
+Using the temporal feature("trial_start_dt") available and the dependent feature("converted_ind"),
+we can create a "difference" column to verify for valid data to be used.
+
+4. Label Encoder
+Performing Label encoding to all categorical features.
+
+5. Feature Scaling
+As the values in all features have varied range, we need to normalize them
+or bring them under one standard (eg: range all values between 0 - 1).
+We can use Standard scaler(uses Standard normal distribution) or Min-max scaler (sets between 0 - 1)
+
+
+FEATURE SELECTION
+
+Applying Feature Selection using Lasso Regression.
+Lasso Regression helps to find the features. It checks which features are/would eventually narrow to the best fit.
+Uses the standard error function. The features having a very low slope are not considered.
+
+MODEL SELECTION
+
+I would prefer to go with XGBoost Classifier. Compared to other classifiers, XGBoost tends to give a better result
+as it has excellent capability to avoid overfitting of the model.
+There are multiple parameters available that can be tuned to avoid over-fitting of the model.
+
+MODEL EVALUATION
+
+The ROC-AUC can be used to verify the optimal score of the trained model.
+We can also perform k-fold validation for optimal results.
+the performance metrics to be calculated and taken into account: accuracy, precision, recall, f1 score, confusion matrix.
+
+CONCLUSION:
+The users watching more than 75% content would tend to buy the subscription and become paid members.
+The features like "video_duration_seconds", "video_25_pct_ind", "video_75_pct_ind", etc would have major contribution to that.
